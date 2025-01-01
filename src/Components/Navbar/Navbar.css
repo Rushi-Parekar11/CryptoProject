@@ -1,0 +1,66 @@
+.NavbarMain{
+display: flex;
+justify-content: space-around;
+align-items: center;
+border-bottom: 2px solid gray;
+padding: 20px 10%;
+}
+.mainlogo{
+    height: 40px;
+    width: 50px;
+}
+.navfirstDiv{
+    display: flex;
+    align-items: center;
+}
+.navsecondDiv ul{
+display: flex;
+gap: 25px;
+}
+.navsecondDiv li{
+    list-style: none;
+    transition: color 0.3s ease;
+    color: #8a8a8a;
+
+}
+.navsecondDiv li:hover{
+    list-style: none;
+    color: rgb(255, 193, 47);
+cursor: pointer;
+}
+.navthirdDiv{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.loginBtn{
+    display: flex;
+align-items: center;
+gap: 5px;
+padding: 9px 20px;
+border-radius: 20px;
+font-size: 15px;
+font-weight: 500;
+color: #393939;
+background: white;
+border: none;
+cursor: pointer;
+
+}
+.loginBtn:hover{
+    transition: color 0.3s ease;
+    background-color:  rgb(255, 197, 62);
+    color: white;
+
+}
+.walletlogo{
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.walletlogo:hover{
+    transform: scale(1.1);
+}
+
+/* --------------------------Responsive----------------------------- */
