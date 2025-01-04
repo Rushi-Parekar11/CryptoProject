@@ -1,16 +1,14 @@
 .HomeMain{
     padding: 0px 10px;
-    padding-bottom: 100px;
+    padding-bottom: 1px;
 }
 .hero{
     padding: 20px 200px;
-    padding-top: 80px;
-    
+    padding-top: 73px;
+    margin-bottom: 20px;
     display: flex;
-    border: 2px solid rgb(255, 75, 75);
 }
 .heroText {
-/* border: 2px solid white; */
 width: 50%;
 padding-top: 30px;
 }
@@ -27,15 +25,16 @@ padding-top: 30px;
 }
 
 .heroImg{
-    /* border: 2px solid white; */
+    display: inherit;
     width: 50%;
     display: flex;
     justify-content: end;
 }
 .mainimg{
     height: 20rem;
+padding-top: 10px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    filter: drop-shadow(0px 10px 10px rgba(255, 255, 255, 0.2)); 
+    filter: drop-shadow(0px 7px 9px rgba(255, 255, 255, 0.2)); 
     animation: updown 3s ease-in-out infinite;
 }
 
@@ -87,6 +86,10 @@ cursor: pointer;
 
 
 /* -----------------Coin css ----------------- */
+#infonm{padding-left: 50px; }
+#infopri{padding-left: 250px;}
+#info24ch{padding-left: 130px;}
+#infomcap{padding-left: 140px;}
 
 .section{
     /* border: 1px solid black; */
@@ -148,11 +151,12 @@ margin-bottom: 7px;
     border-bottom: 1px solid #3d3d3d;
     border-radius: 3px;
     justify-content: sta;
-    transition: max-width 1s ease 0.5s;
+    transition: max-width,background-color 1s ease 0.5s;
 }
 .coinstrip:hover{
     transform: scale(1.001);
     max-width:1000px; 
+    background-color: #343436;
     box-shadow: 0px 0px 6px 2px rgba(125, 125, 125, 0.2);
 }
 #dropdn{
@@ -164,7 +168,6 @@ margin-bottom: 7px;
 }
 .dropdown-item{
     cursor: pointer;
-    color: #FCC737;
 }
 .dropdown-item:hover{
     font-weight: bold;
@@ -173,4 +176,179 @@ margin-bottom: 7px;
 .dropdown-item:active{
     background-color: #efefef;
 }
+#textedit{
+    color: #c3c3c3;
+    font-size: 1rem;
+}
+#currlogo{width: 28px;padding-right: 10px;}
+#indexcou{width: 6%;}
+#symb{padding-left:20px; display: inherit;}
+#nmall{width: 34%;padding-left: 5px;}
+/* ---------------------- responsive ------------------- */
+@media (max-width: 1000px) {
+.heroImg{
+    /* display: none; */
+}
+.heroImg{
+    display: inherit;
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+.mainimg{
+    margin-top: 10px;
+    height: 7rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    filter: drop-shadow(0px 10px 10px rgba(255, 255, 255, 0.2)); 
+    animation: updown 3s ease-in-out infinite;
+}
 
+.HomeMain{
+    padding: 0px 0px;
+    margin-top: 40px;
+}
+.hero{
+    padding: 20px 7px;
+    padding-top: 20px;
+    margin-bottom: 40px;
+}
+.heroText {
+width: 70%;
+padding-top: 5px;
+}
+.heroText h1{
+    font-size: 1.7rem;
+}
+.heroText h2{
+    font-size: 1rem;
+}
+.heroText h5{
+    padding-top: 10px;
+    font-size: 0.6rem;
+    font-weight: 400;
+}
+
+.inputfild{
+    width: 30rem;
+    height: 2.6rem;
+  }
+.HomeMain form{
+    padding: 3px;
+width: 18rem;
+background-color: white;
+border-radius: 5px;
+font-size: 12px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 10px;
+}
+.HomeMain input{
+    flex: 1;
+font-size: 13px;
+outline: none;
+border: none;
+padding-left: 10px;
+}
+
+form button{
+    border: none;
+background: #FCC737;
+color: white;
+font-size: 16px;
+padding: 6px 10px;
+border-radius: 5px;
+cursor: pointer;
+}
+.infobarCO-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .infobarCO {
+    align-items: center;
+    /* display: flex; */
+    flex-direction: row;
+    height: 7vh;
+    max-width:93%; 
+    background-color: #2C2C2E;
+    padding-left: 5px;
+    font-weight: 400;
+    font-size: 12px;
+    border-bottom: 1px solid #616161;
+margin-top:60px ;
+margin-bottom: 7px;
+    border-radius: 10px 10px 0px 0px;
+}
+#infonm{padding-left: 11px; }
+#infopri{padding-left: 38px;}
+#info24ch{padding-left: 32px;}
+#infomcap{padding-left: 25px;}
+#currbtn{
+    height: 25px;
+    width: 80px;
+    font-size: 11px;
+    font-weight: 400;
+    border: none;
+}
+
+/* ----- */
+.coinstrip div{
+    height:8vh;
+    display: flex;
+    align-items: center;
+}
+.coinstrip p{
+    font-weight: 400;
+}
+.coinstrip span{
+    height:8vh;
+    width: 30px;
+    display: flex;
+    align-items: center;justify-content:center ;
+    font-size: small;
+    color: gray;
+}
+.coinstrip{
+    display: flex;
+    height: 8vh;
+    max-width:93%; 
+    font-weight: 300;
+    font-size: 11px;
+
+}
+#currlogo{
+    width: 22px;
+    padding-right: 5px;
+}
+#indexcou{
+    width: 6%;
+    font-weight: 300;
+    font-size: 11px;
+}
+#symb{
+    display: none;
+    font-weight: 300;
+    font-size: 11px;
+}
+#nmall{width: 27%;padding-left: 5px;
+    font-weight: 300;
+    font-size: 11px;
+}
+#textedit{
+    font-weight: 300;
+    font-size: 11px;
+}
+}
+/* ------------------ suggestio ------------------------------- */
+/* Styling the options inside the datalist */
+input[list] {
+    background-color: white; /* To give the input field a white background */
+  }
+  
+  datalist option {
+    background-color: white; /* Set the background color of options */
+    color: black; /* Optional: Set text color for better visibility */
+  }
+  
