@@ -196,7 +196,7 @@ function Coin() {
 
 
 <div className="fundamentals">
-<div>
+<div className='fundapart'>
 <p className='mainnameFUNDAMANTALS'>Fundamentals</p>
     <div className="fundaDisclaimer">Market Cap &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <p className='funda'>{coindata[0]?.market_cap}</p> </div>
     <div className="fundaDisclaimer">Total Volume &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p className='funda'>{coindata[0]?.total_volume}</p></div>
@@ -205,8 +205,8 @@ function Coin() {
     <div className="fundaDisclaimer">ath &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p className='funda'>{coindata[0]?.ath}</p></div>
 </div>
     
-    <div>
-<p className='mainnameFUNDAMANTALS'>-</p>
+    <div id='hideinresponsive' className='fundapart'>
+<p className='mainnameFUNDAMANTALS' >-</p>
     <div className="fundaDisclaimer">High 24h  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p className='funda'>{coindata[0]?.high_24h}</p></div>
     <div className="fundaDisclaimer">Low 24h  &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p className='funda'>{coindata[0]?.low_24h}</p></div>
     <div className="fundaDisclaimer">Price Change 24h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p className='funda'>{coindata[0]?.price_change_24h}</p> </div>
@@ -225,7 +225,7 @@ function Coin() {
                         <hr />
                         
                         <div className="buycontent">
-                            <p className='buyCardName'>Quantity : <input type="text" value={price} onChange={handleChange} id="qut" /></p>
+                            <p id='bcd' className='buyCardName'>Quantity : <input type="text" value={price} onChange={handleChange} id="qut" /></p>
                             <p className='buyCardName'>Per Qua : &nbsp; &nbsp; ₹{coindata[0]?.current_price.toLocaleString('en-IN')}</p>
                             <p className='buyCardName'>Required : &nbsp;&nbsp; ₹{(price * coindata[0]?.current_price).toLocaleString('en-IN')}</p>
                         </div>

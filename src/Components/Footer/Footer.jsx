@@ -4,7 +4,7 @@ import "../Footer/Footer.css"
 function Footer() {
   return (
 <>
-  <div className="container" style={{borderRadius:'10px'}}>
+  <div className="footercontainer" style={{borderRadius:'10px'}}>
     <footer id='mn' className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4  bg-dark text-light" >
       <p className="col-md-4 mb-0 d-flex ">©<li style={{color:'#FCC737',listStyle:'none',margin:'0px 10px'}}> CryptoCarft </li> All rights reserved.</p>
 
