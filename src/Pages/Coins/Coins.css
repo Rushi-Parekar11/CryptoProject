@@ -173,7 +173,11 @@ align-items: center;
     height: 36vh;
     display: flex;flex-direction: row;
     gap: 190px;
-    display: inherit;
+    /* display: inherit; */
+}
+.fundapart{
+    display: flex;
+    flex-direction: column;
 }
 .fundaDisclaimer{
     color: #cfcfcf;

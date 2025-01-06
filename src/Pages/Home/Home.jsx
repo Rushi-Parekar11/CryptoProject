@@ -6,6 +6,8 @@ import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowRoundUp } from "react-icons/io";
 import { IoIosArrowRoundDown } from "react-icons/io";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function Home() {
   const [star, setStar] = useState(true);
@@ -13,6 +15,7 @@ function Home() {
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState('');
   const [currency, setCurrency] = useState({ name: 'USD', symbol: '$' });
+  const [isLoading,setIsLoading]= useState(true);
 
   // Fetch data from the API
   const fetchData = async () => {
@@ -22,13 +25,11 @@ function Home() {
     };
 
     try {
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}`,
-        options
-      );
+      const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}`,options);
       const data = await response.json();
       setAlldata(data);
       setFilteredData(data);
+      setIsLoading(false)
       console.log(data)
     } catch (err) {
       console.error('Error fetching data:', err);
@@ -61,30 +62,30 @@ function Home() {
       {/* Hero Section */}
       <div className="hero">
         <div className="heroText">
-          <h1>India's First Platform for </h1>
-          <h2>Learning Crypto Trading!</h2>
+          <h1> {isLoading ? <Skeleton  /> : "India's First Platform for"}</h1>
+          <h2>{isLoading ? <Skeleton/>:"Learning Crypto Trading!"}</h2>
           <center>
-            <h5>Your gateway to mastering crypto trading.</h5>
+            <h5>{isLoading ? <Skeleton/>:"Your gateway to mastering crypto trading."}</h5>
           </center>
         </div>
-        <div className="heroImg">
-          <img src={heroImg} alt="Hero Banner" className="mainimg" />
-        </div>
+        {isLoading ? (<Skeleton width={400} height={300} style={{marginLeft:'120px'}}/>) : (<div className="heroImg"><img src={heroImg} alt="Hero Banner" className="mainimg" /></div>)}
+
       </div>
 
       {/* Search Bar */}
       <center>
-        <form onSubmit={searchHandler}>
+      
+      {isLoading ? <Skeleton  width={500} height={65} style={{}}/> :  <form onSubmit={searchHandler}>
           <input type="text" placeholder="Search Crypto.." className="inputfild" list='coinlist' onChange={inputHandler} value={input}  required />
           <datalist id='coinlist'>{alldata.map((item,index)=>(<option key={index} value={item.name}/>))}</datalist>
           <button type="submit">Search</button>
-        </form>
+        </form>}
       </center>
 
       {/* Info Bar */}
-      <div className="infocard">
+       <div className="infocard">
         <center>
-          <div className="infobarCO">
+        {isLoading ? <Skeleton  width={970} height={70} style={{marginTop:'63px'}}/> :    <div className="infobarCO">
             <div>#</div>
             <div id="infonm">Name</div>
             <div id="infopri">
@@ -101,7 +102,7 @@ function Home() {
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={() => setCurrency({ name: 'USD', symbol: '$' })}
+                      onClick={() =>{ setCurrency({ name: 'USD', symbol: '$' });setIsLoading(true)}}
                     >
                       USD $
                     </div>
@@ -109,7 +110,7 @@ function Home() {
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={() => setCurrency({ name: 'INR', symbol: '₹' })}
+                      onClick={() => {setCurrency({ name: 'INR', symbol: '₹' });setIsLoading(true)}}
                     >
                       INR ₹
                     </div>
@@ -119,32 +120,33 @@ function Home() {
             </div>
             <div id="info24ch">24h%</div>
             <div id="infomcap">Market Cap</div>
-          </div>
+          </div>}
         </center>
       </div>
 
       {/* Crypto Table */}
+      
       <div className="cryptoTable">
         <center>
           {filteredData.map((data, index) => (
             <Link to={`coin/${data.id}`} style={{ color: 'inherit', textDecoration: 'none' }} className="coincardMain" key={index}>
-              <div className="coinstrip">
-                <span id="indexcou">#{data.market_cap_rank  }</span>
+            <div className="coinstrip">
+              {isLoading ? <Skeleton width={200} height={25}/> : <span id="indexcou">#{data.market_cap_rank  }</span>}
 
                 <div id="nmall">
-                  <img src={data.image} alt="Crypto Logo" id="currlogo" />
-                  {data.id.slice(0, 13)}
-                  <span id="symb">{data.symbol.toUpperCase()}</span>
+                {isLoading ? <Skeleton circle={true} width={100} height={30}/> : <img src={data.image} alt="Crypto Logo" id="currlogo" /> }  
+                {isLoading ? <Skeleton width={1000} height={15}/> : data.id.slice(0, 13)}
+                {isLoading ? <Skeleton width={800} height={50} /> :<span id="symb">{data.symbol.toUpperCase()}</span>}
                 </div>
 
                 <div style={{ width: '24%' }} id="textedit">
-                  {currency.symbol} {data.current_price}
+                {isLoading ? <Skeleton width={800} height={15} /> : `${currency.symbol} ${data.current_price}`}
                 </div>
                 <div style={{ width: '17%' }} id="textedit">
-                  {Math.floor(data.price_change_percentage_24h * 100) / 100}
+                {isLoading ? <Skeleton width={800} height={15} /> : `${Math.floor(data.price_change_percentage_24h * 100) / 100}`}
                 </div>
                 <div style={{ width: '17%' }} id="textedit">
-                  {currency.symbol} {data.market_cap}
+                {isLoading ? <Skeleton width={800} height={15} /> :  `${currency.symbol} ${data.market_cap}`}
                 </div>
               </div>
             </Link>

@@ -9,6 +9,9 @@ import "../Coins/Coins.css";
 import {Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip,Legend,} from 'chart.js';
 ChartJS.register(CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip, Legend);
 import { useParams } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const options = {
     responsive: true,
@@ -75,19 +78,24 @@ function Coin() {
     const { coinId } = useParams();
     const [coindata,setcoindata] = useState([]);
     const [currency, setCurrency] = useState({ name: 'USD', symbol: '$' });
+    const [isLoading,setIsLoading]= useState(true);
 
 
     const fetchData = async () => {
-      const check ={};
-      const options = {
-        method: 'GET',
-        headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-pHf31zkRTE8SGXcFdb16G8vC'}
-      };
-      const data = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinId}`, options)
-        .then(data => data.json())
-        .then(data => setcoindata(data))
-        .catch(err => console.error(err));
+      try {
+        const options = {
+          method: 'GET',
+          headers: { accept: 'application/json', 'x-cg-demo-api-key': 'CG-pHf31zkRTE8SGXcFdb16G8vC' },
+        };
+        const data = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinId}`, options)
+          .then((data) => data.json());
+        setcoindata(data);
+        setIsLoading(false); 
+      } catch (err) {
+        console.error(err);
+      }
     };
+    
 
     const fetchChartData = async () => {
       try {
@@ -102,6 +110,8 @@ function Coin() {
               new Date(timestamp).toLocaleDateString('en-IN')
           );
           const data = prices.map(([, price]) => price);
+                  setIsLoading(false)
+
           setChartData({labels,datasets: [
                   {
                       label: 'Bitcoin Price (INR)',
@@ -119,6 +129,7 @@ function Coin() {
   };
 
     useEffect(() => {
+      window.scrollTo(0, 0);
         fetchData();
         fetchChartData();
     }, []);
@@ -149,42 +160,42 @@ function Coin() {
             <div className='MainContainer'>
                 <div className="Allinfo">
                     <div className='DisclaimerStrip'>
-                        <p className='Disclaimer'> Disclaimer:Today, 5:30 </p>
+                    {isLoading ? <Skeleton width={150} height={15}/> : <p className='Disclaimer'> Disclaimer:Today, 5:30 </p>}    
                     </div>
 
                     <div className='logoStrip'>
                         <div className="imgbox">
-                            <img src={coindata[0]?.image} alt="Coin Logo" height={'60px'} width={'60px'} />
+                        {isLoading ? <Skeleton circle={true} width={50} height={50}/> : <img src={coindata[0]?.image} alt="Coin Logo" height={'60px'} width={'60px'} />}
                         </div>
                         <div className='twoButtonDiv'>
-                            <div className='WLbutton' onClick={() => letstar(!star)}>
+                        {isLoading ? <Skeleton width={100} height={15} /> : <div className='WLbutton' onClick={() => letstar(!star)}>
                                 {star ? <FaRegStar className='str' /> : <FaStar className='stryellow' />}
                                 <p className='DisclaimerWL'>WatchList</p>
-                            </div>
-                            <div className='WLbutton'>
+                            </div>}
+                            {isLoading ? <Skeleton width={100} height={15} /> : <div className='WLbutton'>
                                 <MdAccessAlarm className='str' />
                                 <p className='DisclaimerWL'>Create Alert</p>
-                            </div>
+                            </div>}
                         </div>
                     </div>
 
                     <div className='nameStrip'>
-                        <p className='mainname'>{coinId}</p>
+                    {isLoading ? <Skeleton  width={200} height={30}/> : <p className='mainname'>{coinId}</p>}
                     </div>
 
-                    <div className='priceStrip'>
+                    {isLoading ? <Skeleton  width={200} height={30}/> :  <div className='priceStrip'>
                         <p className='mainprice'>₹ {coindata[0]?.current_price.toLocaleString('en-IN')}</p>
                         <p style={pers > 0 ? { color: 'green' } : { color: '#eb5b3c' }}>
                         {coindata[0]?.ath_change_percentage !== undefined   ? (Math.floor(coindata[0].ath_change_percentage * 10) / 100) : '--'} 
                                </p>
-                    </div>
+                    </div>}
 
-                    <div className='grapStrip'>
+                    {isLoading ? <Skeleton  width={799} height={400}/> :  <div className='grapStrip'>
                         <div>
                             <p className='DataPastDays'>{coinId} Price Chart (Last 5 Days)</p>
                             {chartData ? (<Line data={chartData} options={options} />) : (<p>Chart Loading ...</p>)}
                         </div>
-                    </div>
+                    </div>}
                         <div className="timedataBtn">
 {/* <button className="timeBtns" onClick={()=>timeBtnshandel(1)} style={{ borderColor: timeBtns === 1 ? '#424242' : 'rgb(223, 221, 221)' }}>24hr</button>
 <button className="timeBtns" onClick={()=>timeBtnshandel(6)} style={{ borderColor: timeBtns === 6 ? '#424242' : 'rgb(223, 221, 221)' }}>1W</button>
@@ -195,7 +206,7 @@ function Coin() {
 <hr />
 
 
-<div className="fundamentals">
+{isLoading ? <Skeleton  width={799} height={300} style={{}}/> : <div className="fundamentals">
 <div className='fundapart'>
 <p className='mainnameFUNDAMANTALS'>Fundamentals</p>
     <div className="fundaDisclaimer">Market Cap &nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <p className='funda'>{coindata[0]?.market_cap}</p> </div>
@@ -214,15 +225,15 @@ function Coin() {
     <div className="fundaDisclaimer">atbh date  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<p className='funda'>{coindata[0]?.ath_date}</p></div>
 </div>
 
-</div> 
+</div> }
 
                 </div>
 
-                <div className="BuyCard">
+                {isLoading ? <Skeleton  width={370} height={600} style={{marginLeft:'40px'}}/> : <div className="BuyCard">
                   <div className="buycardmain">
-                        <p className='buyCardName'>{coindata[0]?.id}&nbsp;&nbsp;{coindata[0]?.symbol.toUpperCase()}</p>
-                        <p className='Disclaimer' style={{marginLeft:'10px'}}>₹{coindata[0]?.current_price.toLocaleString('en-IN')} &nbsp;&nbsp; ({Math.floor(pers*10)/100}%)</p>
-                        <hr />
+                  {isLoading ? <Skeleton  width={100} height={30} style={{marginTop:'20px'}}/>:<p className='buyCardName'>{coindata[0]?.id}&nbsp;&nbsp;{coindata[0]?.symbol.toUpperCase()}</p>}
+                  {isLoading ? <Skeleton  width={200} height={20}/>:<p className='Disclaimer' style={{marginLeft:'10px'}}>₹{coindata[0]?.current_price.toLocaleString('en-IN')} &nbsp;&nbsp; ({Math.floor(pers*10)/100}%)</p>}
+                        <hr /> 
                         
                         <div className="buycontent">
                             <p id='bcd' className='buyCardName'>Quantity : <input type="text" value={price} onChange={handleChange} id="qut" /></p>
@@ -239,7 +250,7 @@ function Coin() {
 
 
                     </div> 
-                </div>
+                </div>}
             </div>
         </>
     );

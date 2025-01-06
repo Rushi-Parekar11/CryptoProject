@@ -186,9 +186,7 @@ margin-bottom: 7px;
 #nmall{width: 34%;padding-left: 5px;}
 /* ---------------------- responsive ------------------- */
 @media (max-width: 1000px) {
-.heroImg{
-    /* display: none; */
-}
+
 .heroImg{
     display: inherit;
     width: 50%;
