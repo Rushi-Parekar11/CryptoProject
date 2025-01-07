@@ -4,6 +4,10 @@ justify-content: space-around;
 align-items: center;
 border-bottom: 2px solid gray;
 padding: 20px 10%;
+position: sticky;
+top: 0;
+background-color: #141416;
+z-index: 200;
 }
 .mainlogo{
     height: 40px;

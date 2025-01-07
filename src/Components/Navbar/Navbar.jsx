@@ -15,6 +15,11 @@ import Wallet from '../Wallet/Wallet';
 function Navbar() {
     const [isLogin,setisLogin]=useState(true);
     const [showWallet,setshowWallet] = useState(false);
+   
+
+  const HandelWalletClick=()=>{
+    setshowWallet(!showWallet);
+  }
   
 
   return (
@@ -30,22 +35,21 @@ function Navbar() {
       <Link to={'/'} id='linkstyl'><li>Home</li></Link>  
         <li>Exchanges</li>
         {isLogin ? <li>Portfolio</li> : <li onClick={()=>toast("Login required to view this section.")}>PortfolioNO</li>}
-        <li>Price</li>
       </ul>
       </div>
 
 
       <div className='navthirdDiv'>
-      {isLogin ?   <div ><IoWallet className='walletlogo'/></div> :  <div ><IoWallet className='walletlogo' onClick={()=>toast("Login required to view this section.")}/></div>}<div><IoMdNotifications className='walletlogo'/></div>
+      {isLogin ?   <div ><IoWallet className='walletlogo' onClick={HandelWalletClick}/></div> :  <div ><IoWallet className='walletlogo' onClick={()=>toast("Login required to view this section.")}/></div>}<div><IoMdNotifications className='walletlogo'/></div>
     <center>  {isLogin ? <Link to={'/profile'} className='profilIconLINK'><CgProfile className='profilIcon'/> </Link>: <Link id='loginLNK' to={"/login"}><button className='loginBtn'>Login <GoArrowUpRight/></button></Link>}</center>
       </div>
 
 
-  {/* ///////////// wallet ///////////////////////// */}
-      <div className="walletMainDIV">
-      <div className='cirsclerenove'><CiCircleRemove id='FaRegTimesCircle'/></div> 
+{/* ////////////////// wallet ////////////////// */}
+      <div className="walletMainDIV" style={showWallet ? { visibility: 'visible'} : { visibility: 'hidden'}}>
+      <div className='cirsclerenove'><CiCircleRemove id='FaRegTimesCircle' onClick={HandelWalletClick}/></div> 
        <hr style={{color:'black'}}/>
-       <div className='inlineWALLET'><h2>₹ 10000</h2><p>.00</p></div>
+       <div className='inlineWALLET' style={{paddingLeft:'20px'}}><h2 >₹ 10000</h2><p>.00</p></div>
        <hr />
        <div className="inlineWALLET"><p className='accopbal'>Initially Bonus : 1000</p></div>
        <div className="inlineWALLET"><p style={{color:'green'}}>Bonus use : 1000</p></div>
@@ -60,9 +64,10 @@ function Navbar() {
     <li>Home</li>
     <li>Exchanges</li>
     <li>Portfolio</li>
-    <li>Price</li>
-    
-  {isLogin ?<div className='responsiveProfile'><CgProfile className='profilIcon' /><p>Profile</p></div>: <button className='loginBtn' style={{width:'150px',paddingLeft:'45px'}}>Login <GoArrowUpRight/></button>} 
+    <hr />
+    {isLogin ? <div ><IoWallet className='walletlogo' onClick={HandelWalletClick}/> Wallet</div> :  <div ><IoWallet className='walletlogo' onClick={()=>toast("Login required to view this section.")}/></div>}
+    <hr />
+  {isLogin ?<div className='responsiveProfile'><CgProfile className='profilIcon'  style={{height:'25px',width:'40px'}} /><p>Profile</p></div>: <button className='loginBtn' style={{width:'150px',paddingLeft:'45px'}}>Login <GoArrowUpRight/></button>} 
   </div>
 </div>
 </div>
