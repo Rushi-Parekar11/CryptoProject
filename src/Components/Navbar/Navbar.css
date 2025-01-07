@@ -114,6 +114,49 @@ cursor: pointer;
   .profilIconLINK{
     color: white;
   }
+  .walletMainDIV{
+    height: 300px;
+    width: 200px;
+    background-color: #ffffff;
+    z-index: 100;
+    position: fixed;
+    top: 65px;
+    right: 290px;
+    border-radius: 4px;
+    padding: 0px 10px;
+  }
+  #FaRegTimesCircle{
+    height: 27px;width: 27px;color: black;
+  }
+  #FaRegTimesCircle:hover{
+  color: rgb(255, 197, 62);
+  }
+  .cirsclerenove{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 10px;
+    padding-top: 7px;
+  }
+  .inlineWALLET{
+    display: flex;
+    flex-direction: row;
+    align-items: last baseline;
+    color: black;
+  }
+  .inlineWALLET h2{
+    border-bottom: 2px solid black;
+  }
+  .accopbal{
+    font-size: smaller;
+    color: #393939;
+  }
+  .addmonyBTN{
+  background-color: rgb(255, 197, 62);
+  outline: none;border: none;
+  padding: 6px 30px;
+  border-radius: 5px;color: white;
+  }
 /* --------------------------Responsive----------------------------- */
 @media (max-width: 1000px) {
     .NavbarMain {

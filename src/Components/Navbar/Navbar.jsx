@@ -5,13 +5,16 @@ import { GoArrowUpRight } from "react-icons/go";
 import { IoWallet } from "react-icons/io5";
 import { IoMdNotifications } from "react-icons/io";
 import { MdOutlineMenu } from "react-icons/md";
+import { FaRegTimesCircle } from "react-icons/fa";
+import { CiCircleRemove } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
 import {toast} from 'react-toastify'
-
+import Wallet from '../Wallet/Wallet';
 
 function Navbar() {
     const [isLogin,setisLogin]=useState(true);
+    const [showWallet,setshowWallet] = useState(false);
   
 
   return (
@@ -35,7 +38,18 @@ function Navbar() {
       <div className='navthirdDiv'>
       {isLogin ?   <div ><IoWallet className='walletlogo'/></div> :  <div ><IoWallet className='walletlogo' onClick={()=>toast("Login required to view this section.")}/></div>}<div><IoMdNotifications className='walletlogo'/></div>
     <center>  {isLogin ? <Link to={'/profile'} className='profilIconLINK'><CgProfile className='profilIcon'/> </Link>: <Link id='loginLNK' to={"/login"}><button className='loginBtn'>Login <GoArrowUpRight/></button></Link>}</center>
-      
+      </div>
+
+
+  {/* ///////////// wallet ///////////////////////// */}
+      <div className="walletMainDIV">
+      <div className='cirsclerenove'><CiCircleRemove id='FaRegTimesCircle'/></div> 
+       <hr style={{color:'black'}}/>
+       <div className='inlineWALLET'><h2>₹ 10000</h2><p>.00</p></div>
+       <hr />
+       <div className="inlineWALLET"><p className='accopbal'>Initially Bonus : 1000</p></div>
+       <div className="inlineWALLET"><p style={{color:'green'}}>Bonus use : 1000</p></div>
+       <center><button className='addmonyBTN'>Add Money</button></center>
       </div>
 
 {/* /////////////// drop down ////////////// */}

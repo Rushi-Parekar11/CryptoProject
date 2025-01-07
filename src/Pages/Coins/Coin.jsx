@@ -207,6 +207,8 @@ buttons.forEach(button => {
                             {chartData ? (<Line data={chartData} options={options} />) : (<p>Chart Loading ...</p>)}
                         </div>
                     </div>}
+
+  {/* /////////// Time Buttons //////////////////                   */}
                         <div className="timedataBtn">
 <button className="timeBtns active"   onClick={()=>timeBtnshandel(1)} >24hr</button>
 <button className="timeBtns" onClick={()=>timeBtnshandel(6)} >1W</button>
