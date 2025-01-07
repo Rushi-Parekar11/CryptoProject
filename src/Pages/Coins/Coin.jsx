@@ -238,6 +238,8 @@ buttons.forEach(button => {
     <div className="fundaDisclaimer">atbh date  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<p className='funda'>{coindata[0]?.ath_date}</p></div>
 </div>
 
+<hr />
+
 </div> }
 
                 </div>
