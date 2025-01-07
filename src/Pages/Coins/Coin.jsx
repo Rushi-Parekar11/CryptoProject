@@ -69,16 +69,12 @@ function Coin() {
     // const isoDate = Coindata.last_updated.slice(11, 19);
     const [star, letstar] = useState(true);
     const [chartData, setChartData] = useState(null); 
-    // const [timeBtns,settimeBtns]=useState(1)
-
-    // const timeBtnshandel=(getdays)=>{
-    //      settimeBtns(getdays);    
-    //      fetchChartData()
-    // }
+    const [timeBtns,settimeBtns]=useState(1)
     const { coinId } = useParams();
     const [coindata,setcoindata] = useState([]);
     const [currency, setCurrency] = useState({ name: 'USD', symbol: '$' });
     const [isLoading,setIsLoading]= useState(true);
+
 
 
     const fetchData = async () => {
@@ -104,7 +100,7 @@ function Coin() {
           headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-pHf31zkRTE8SGXcFdb16G8vC'}
         };
         
-        const res = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=inr&days=5`,options);
+        const res = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=inr&days=${timeBtns}`,options);
         const prices = res.data.prices;
           const labels = prices.map(([timestamp]) =>
               new Date(timestamp).toLocaleDateString('en-IN')
@@ -153,6 +149,21 @@ function Coin() {
     console.log(coindata[0]?.ath_change_percentage); 
     let pers = coindata[0]?.ath_change_percentage;
 
+    const timeBtnshandel=(getdays)=>{
+      setIsLoading(true);
+      settimeBtns(getdays);    
+      fetchChartData()
+ }
+
+const buttons = document.querySelectorAll('.timeBtns');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+    });
+});
+
+ 
 
 
     return (
@@ -192,15 +203,15 @@ function Coin() {
 
                     {isLoading ? <Skeleton  width={799} height={400}/> :  <div className='grapStrip'>
                         <div>
-                            <p className='DataPastDays'>{coinId} Price Chart (Last 5 Days)</p>
+                            <p className='DataPastDays'>{coinId} Price Chart (Last {timeBtns} Day)</p>
                             {chartData ? (<Line data={chartData} options={options} />) : (<p>Chart Loading ...</p>)}
                         </div>
                     </div>}
                         <div className="timedataBtn">
-{/* <button className="timeBtns" onClick={()=>timeBtnshandel(1)} style={{ borderColor: timeBtns === 1 ? '#424242' : 'rgb(223, 221, 221)' }}>24hr</button>
-<button className="timeBtns" onClick={()=>timeBtnshandel(6)} style={{ borderColor: timeBtns === 6 ? '#424242' : 'rgb(223, 221, 221)' }}>1W</button>
-<button className="timeBtns" onClick={()=>timeBtnshandel(15)} style={{ borderColor: timeBtns === 15 ? '#424242' : 'rgb(223, 221, 221)' }}>15D</button>
-<button className="timeBtns" onClick={()=>timeBtnshandel(30)} style={{ borderColor: timeBtns === 30 ? '#424242' : 'rgb(223, 221, 221)' }}>1M</button> */}
+<button className="timeBtns active"   onClick={()=>timeBtnshandel(1)} >24hr</button>
+<button className="timeBtns" onClick={()=>timeBtnshandel(6)} >1W</button>
+<button className="timeBtns" onClick={()=>timeBtnshandel(15)} >15D</button>
+<button className="timeBtns" onClick={()=>timeBtnshandel(30)} >1M</button> 
 </div>
 
 <hr />

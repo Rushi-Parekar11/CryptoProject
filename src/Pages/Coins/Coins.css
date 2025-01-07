@@ -46,6 +46,7 @@ align-items: center;
     margin-left: 20px;
 }
 .logoStrip{
+    
     margin-top: 5px;
     /* border: 1px solid gray; */
     width: 100%;
@@ -144,18 +145,30 @@ align-items: center;
     align-items: center;
     border: none;
 }
-.timeBtns{
-    height: 27px;width: 70px;
+.timeBtns {
+    height: 35px;
+    width: 90px;
     border: 2px solid rgb(223, 221, 221);
     font-size: small;
-    font-weight: 9px;
-    display: flex;flex-direction: row;
-    border-radius: 9px;
-    align-items: center;justify-content: center;
+    font-weight: normal;
+    display: flex;
+    flex-direction: row;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     color: #b0b0b0;
     margin-right: 7px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
 }
+
+.timeBtns.active {
+    background-color: #d6aa32; 
+    color: white;
+    border: none;
+}
+
 .mainnameFUNDAMANTALS{
     color: #ffffff;
     font-size: 17px;

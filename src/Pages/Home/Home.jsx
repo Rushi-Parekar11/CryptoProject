@@ -77,7 +77,7 @@ function Home() {
       
       {isLoading ? <Skeleton  width={500} height={65} style={{}}/> :  <form onSubmit={searchHandler}>
           <input type="text" placeholder="Search Crypto.." className="inputfild" list='coinlist' onChange={inputHandler} value={input}  required />
-          <datalist id='coinlist'>{alldata.map((item,index)=>(<option key={index} value={item.name}/>))}</datalist>
+          <datalist id='coinlist' style={{backgroundColor:'red',width:'200px'}}>{alldata.map((item,index)=>(<option key={index} value={item.name}/>))}</datalist>
           <button type="submit">Search</button>
         </form>}
       </center>
@@ -85,7 +85,7 @@ function Home() {
       {/* Info Bar */}
        <div className="infocard">
         <center>
-        {isLoading ? <Skeleton  width={970} height={70} style={{marginTop:'63px'}}/> :    <div className="infobarCO">
+        {isLoading ? <Skeleton  width={990} height={70} style={{marginTop:'63px'}}/> :    <div className="infobarCO">
             <div>#</div>
             <div id="infonm">Name</div>
             <div id="infopri">
@@ -135,12 +135,12 @@ function Home() {
 
                 <div id="nmall">
                 {isLoading ? <Skeleton circle={true} width={100} height={30}/> : <img src={data.image} alt="Crypto Logo" id="currlogo" /> }  
-                {isLoading ? <Skeleton width={1000} height={15}/> : data.id.slice(0, 13)}
-                {isLoading ? <Skeleton width={800} height={50} /> :<span id="symb">{data.symbol.toUpperCase()}</span>}
+                {isLoading ? <Skeleton width={1200} height={15}/> : data.id.slice(0, 14)}
+                {isLoading ? <Skeleton width={800} height={15} /> :<span id="symb">{data.symbol.toUpperCase()}</span>}
                 </div>
 
                 <div style={{ width: '24%' }} id="textedit">
-                {isLoading ? <Skeleton width={800} height={15} /> : `${currency.symbol} ${data.current_price}`}
+                {isLoading ? <Skeleton style={{width:'600px'}} height={15} /> : `${currency.symbol} ${data.current_price}`}
                 </div>
                 <div style={{ width: '17%' }} id="textedit">
                 {isLoading ? <Skeleton width={800} height={15} /> : `${Math.floor(data.price_change_percentage_24h * 100) / 100}`}
