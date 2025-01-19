@@ -1,18 +1,35 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
-require("dotenv").config;
-const PORT = process.env.PORT || 8000;
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+require('dotenv').config();
+const cors = require("cors");
+const PORT = process.env.PORT || 8080
+const router = require("./Routers/AllRoutes")
 
 
-// -------DataBase connection--------
-mongoose.connect()
+app.use(cors());
+app.use(bodyParser.json());
+app.use('/', router);
 
-
-//--------Reqest Respons handel----------
-app.get('/',(req,res)=>{
-  res.send("all is ok")
+//----------- DB CONNECTION-----------------
+mongoose.connect(process.env.DB_URL)
+.then(()=>{
+    console.log("Successfully connected to Database.. ")
+})
+.catch((err)=>{
+   console.log("MongoBD connection error!",err)
 })
 
 
-app.listen(PORT,console.log(`app listen at PORT ${PORT}`));
+
+
+
+
+
+
+
+
+app.listen(PORT,()=>{
+    console.log(`app is listen at ${PORT}`);
+})
