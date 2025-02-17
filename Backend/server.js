@@ -23,13 +23,6 @@ mongoose.connect(process.env.DB_URL)
 
 
 
-
-
-
-
-
-
-
 app.listen(PORT,()=>{
     console.log(`app is listen at ${PORT}`);
 })
